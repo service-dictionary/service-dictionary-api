@@ -5,7 +5,7 @@ function sourcesController() {
     const id = parseInt(req.params.sourceId, 10)
 
     db.pool.query(
-      'SELECT * FROM public."Sources" WHERE Id = $1',
+      'SELECT * FROM public."sources" WHERE id = $1',
       [id],
       (error, results) => {
         if (error) {
@@ -16,7 +16,7 @@ function sourcesController() {
     )
   }
   async function getAll(req, res) {
-    db.pool.query('SELECT * FROM public."Sources"', (error, results) => {
+    db.pool.query('SELECT * FROM public."sources"', (error, results) => {
       if (error) {
         throw error
       }
@@ -28,7 +28,7 @@ function sourcesController() {
     const { name } = source
 
     db.pool.query(
-      'INSERT INTO public."Sources"(name) VALUES($1)',
+      'INSERT INTO public."sources"(name) VALUES($1)',
       [name],
       (error, results) => {
         if (error) {
