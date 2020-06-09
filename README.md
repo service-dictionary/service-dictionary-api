@@ -36,7 +36,6 @@ The REST api for the service-dictionary.
 Environment variables are stored in the .env file. Defaults as per below:
 
 ```
-MONGO_URI=mongodb://localhost:27017/data-dictionary
 DB_USER=postgres
 DB_HOST=localhost
 DB_DATABASE=postgres
