@@ -5,13 +5,12 @@ function sourcesController() {
     const id = parseInt(req.params.sourceId, 10)
 
     db.pool.query(
-      // eslint-disable-next-line no-multi-str
-      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created  \
-      FROM public.sources s, public.source_types st \
-      WHERE s.source_type_id = st.source_type_id \
-      AND s.is_active = true \
-      AND s.is_deleted = false \
-      AND s.sourceid = $1',
+      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created \n' +
+        'FROM public.sources s, public.source_types st \n' +
+        'WHERE s.source_type_id = st.source_type_id \n' +
+        'AND s.is_active = true \n' +
+        'AND s.is_deleted = false \n' +
+        'AND s.sourceid = $1',
       [id],
       (error, results) => {
         if (error) {
@@ -23,13 +22,12 @@ function sourcesController() {
   }
   async function getAll(req, res) {
     db.pool.query(
-      // eslint-disable-next-line no-multi-str
-      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created  \
-      FROM public.sources s, public.source_types st \
-      WHERE s.source_type_id = st.source_type_id \
-      AND s.is_active = true \
-      AND s.is_deleted = false \
-      ORDER BY sourceid ASC',
+      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created \n' +
+        'FROM public.sources s, public.source_types st \n' +
+        'WHERE s.source_type_id = st.source_type_id \n' +
+        'AND s.is_active = true \n' +
+        'AND s.is_deleted = false \n' +
+        'ORDER BY sourceid ASC',
       (error, results) => {
         if (error) {
           throw error
