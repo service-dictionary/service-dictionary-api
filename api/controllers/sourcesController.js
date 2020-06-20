@@ -5,10 +5,9 @@ function sourcesController() {
     const id = parseInt(req.params.sourceId, 10)
 
     db.pool.query(
-      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created \n' +
-        'FROM public.sources s, public.source_types st \n' +
-        'WHERE s.source_type_id = st.source_type_id \n' +
-        'AND s.is_active = true \n' +
+      'SELECT s.sourceid, s.name, s.description, s.source_type_id, s.endpoint,  s.is_active, s.created \n' +
+        'FROM public.sources s \n' +
+        'WHERE s.is_active = true \n' +
         'AND s.is_deleted = false \n' +
         'AND s.sourceid = $1',
       [id],
@@ -22,10 +21,9 @@ function sourcesController() {
   }
   async function getAll(req, res) {
     db.pool.query(
-      'SELECT s.sourceid, s.name, s.description, st.name as source_type, s.endpoint,  s.is_active, s.created \n' +
-        'FROM public.sources s, public.source_types st \n' +
-        'WHERE s.source_type_id = st.source_type_id \n' +
-        'AND s.is_active = true \n' +
+      'SELECT s.sourceid, s.name, s.description, s.source_type_id, s.endpoint,  s.is_active, s.created \n' +
+        'FROM public.sources s \n' +
+        'WHERE s.is_active = true \n' +
         'AND s.is_deleted = false \n' +
         'ORDER BY sourceid ASC',
       (error, results) => {
