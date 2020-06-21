@@ -2,10 +2,10 @@ const express = require('express')
 
 const router = express.Router()
 
-const sourceController = require('../controllers/sourcesController')
+const sourceTypesController = require('../controllers/sourceTypesController')
 
 module.exports = () => {
-  const controller = sourceController()
+  const controller = sourceTypesController()
 
   router.route('/').get(controller.getAll).post(controller.create)
 

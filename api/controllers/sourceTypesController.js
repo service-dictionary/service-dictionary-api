@@ -1,20 +1,21 @@
-const { Source } = require('../data/database')
+const { SourceType } = require('../data/database')
 
-function sourcesController() {
+function sourcesTypesController() {
   async function get(req, res) {
-    const id = parseInt(req.params.sourceId, 10)
-    Source.findByPk(id)
+    const id = parseInt(req.params.id, 10)
+    SourceType.findByPk(id)
       .then((s) => {
         res.json(s)
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.log(error)
+        console.error(error)
         res.status(404).send(error)
       })
   }
+
   async function getAll(req, res) {
-    Source.findAll({
+    SourceType.findAll({
       where: {
         is_deleted: false,
       },
@@ -24,13 +25,14 @@ function sourcesController() {
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.log(error)
+        console.error(error)
         res.status(404).send(error)
       })
   }
+
   async function create(req, res) {
-    const { source } = req.body
-    Source.create(source)
+    const { sourceType } = req.body
+    SourceType.create(sourceType)
       .then((s) => {
         res.json(s)
       })
@@ -42,8 +44,8 @@ function sourcesController() {
   }
 
   async function update(req, res) {
-    const { source } = req.body
-    Source.update(source, {
+    const { sourceType } = req.body
+    SourceType.update(sourceType, {
       where: {
         id: req.params.id,
       },
@@ -59,13 +61,13 @@ function sourcesController() {
   }
 
   async function remove(req, res) {
-    Source.destroy({
+    SourceType.destroy({
       where: {
         id: req.params.id,
       },
     })
       .then(() => {
-        res.send('Source successfully deleted')
+        res.send('SourceType successfully deleted')
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -77,4 +79,4 @@ function sourcesController() {
   return { get, getAll, create, update, remove }
 }
 
-module.exports = sourcesController
+module.exports = sourcesTypesController

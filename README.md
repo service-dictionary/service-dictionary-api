@@ -18,14 +18,16 @@ The REST api for the service-dictionary.
 ## Requirements
 
 - [Node 12 (LTS)]('https://nodejs.org/en/blog/release/v12.13.0/')
+
+Databases:
+
+Sequelize supports PostgreSQL, MySQL, MariaDB, SQLite and MSSQL but we use:
+
 - [Postgres]('https://github.com/service-dictionary/service-dictionary-postgres-compose')
 
 # Endpoints
 
-| **Verb** | **Endpoint**     | **Description**                   |
-| -------- | ---------------- | --------------------------------- |
-| GET      | /api/sources/:id | Find a single source using the id |
-| GET      | /api/sources     | Get all sources                   |
+See OpenAPI defintions.
 
 # Hosting
 
@@ -36,11 +38,7 @@ The REST api for the service-dictionary.
 Environment variables are stored in the .env file. Defaults as per below:
 
 ```
-DB_USER=postgres
-DB_HOST=localhost
-DB_DATABASE=postgres
-DB_PASSWORD=changeme
-DB_PORT=5432
+DB_CONNECTION_STRING=postgres://postgres:changeme@localhost:5432/postgres
 ```
 
 ## Build
@@ -59,4 +57,22 @@ npm test
 
 ```bash
 npm start
+```
+
+## Useful.
+
+Get a EADDRINUSE error when restarting the server.
+
+```bash
+lsof -i :5000
+```
+
+then kill the process holding onto the port:
+
+```bash
+kill -9 :<port>
+```
+
+```
+
 ```
